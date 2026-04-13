@@ -4,45 +4,51 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact Us | Sarker Real Estates Ltd.</title>
+    <meta name="description" content="Talk with Sarker Real Estates consultants and plan your next premium property investment.">
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <header>
         <nav class="container">
-            <div class="logo">
+            <a class="logo" href="index.html" aria-label="Sarker Real Estates home">
                 <span class="brand-name">SARKER</span>
                 <span class="sub-brand">REAL ESTATES LTD.</span>
-            </div>
-            <ul class="nav-links">
+            </a>
+            <ul class="nav-links" id="main-nav">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="properties.html">Properties</a></li>
                 <li><a href="index.html#about">About Us</a></li>
                 <li><a href="contact.html" class="active">Contact</a></li>
             </ul>
-            <div class="menu-toggle" id="mobile-menu">
+            <button class="menu-toggle" id="mobile-menu" type="button" aria-label="Toggle navigation" aria-expanded="false" aria-controls="main-nav">
                 <span></span>
                 <span></span>
                 <span></span>
-            </div>
+            </button>
         </nav>
     </header>
 
-    <section class="container" style="padding: 80px 20px; display: grid; grid-template-columns: 1fr 1fr; gap: 50px;">
-        <div>
-            <h2 class="section-title" style="text-align: left;">Let's Talk</h2>
-            <p>Ready to find your next property? Reach out to our expert consultants today.</p>
-            <br>
-            <p><strong>Email:</strong> info@sarkerestates.com</p>
-            <p><strong>Phone:</strong> +880 1XXX-XXXXXX</p>
-            <p><strong>Office:</strong> Bashundhara Riverview, Dhaka.</p>
-        </div>
-        
-        <form style="background: var(--light-cream); padding: 40px; border-radius: 4px;">
-            <input type="text" placeholder="Full Name" style="width: 100%; padding: 12px; margin-bottom: 20px; border: 1px solid #ddd;">
-            <input type="email" placeholder="Email Address" style="width: 100%; padding: 12px; margin-bottom: 20px; border: 1px solid #ddd;">
-            <textarea placeholder="How can we help you?" rows="5" style="width: 100%; padding: 12px; margin-bottom: 20px; border: 1px solid #ddd;"></textarea>
-            <button class="btn btn-primary" style="width: 100%; border: none; cursor: pointer;">Send Message</button>
+    <section class="container contact-layout">
+        <article class="contact-info reveal">
+            <h2 class="section-title section-left">Let's Talk</h2>
+            <p>Ready to find your next property? Reach out to our consultants and receive tailored project recommendations.</p>
+            <p><strong>Email:</strong> <a href="mailto:info@sarkerestates.com">info@sarkerestates.com</a></p>
+            <p><strong>Phone:</strong> <a href="tel:+8801000000000">+880 1000-000000</a></p>
+            <p><strong>Office:</strong> Bashundhara Riverview, Dhaka</p>
+        </article>
+
+        <form class="contact-form reveal" action="mailto:info@sarkerestates.com" method="post" enctype="text/plain">
+            <label for="full-name">Full Name</label>
+            <input id="full-name" type="text" name="Full Name" placeholder="Full Name" required>
+
+            <label for="email">Email Address</label>
+            <input id="email" type="email" name="Email" placeholder="Email Address" required>
+
+            <label for="message">How can we help?</label>
+            <textarea id="message" name="Message" placeholder="How can we help you?" rows="5" required></textarea>
+
+            <button class="btn btn-primary" type="submit">Send Message</button>
         </form>
     </section>
 
@@ -63,8 +69,8 @@
             </div>
             <div>
                 <h4>Contact</h4>
-                <p>info@sarkerestates.com</p>
-                <p>+880 1XXX-XXXXXX</p>
+                <p><a href="mailto:info@sarkerestates.com">info@sarkerestates.com</a></p>
+                <p><a href="tel:+8801000000000">+880 1000-000000</a></p>
                 <p>Bashundhara Riverview, Dhaka</p>
             </div>
         </div>
@@ -72,6 +78,7 @@
             <p>&copy; 2026 Sarker Real Estates Ltd. All rights reserved.</p>
         </div>
     </footer>
+
     <script src="script.js"></script>
 </body>
 </html>

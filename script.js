@@ -1,39 +1,58 @@
 document.addEventListener('DOMContentLoaded', () => {
     const mobileMenu = document.getElementById('mobile-menu');
     const navLinks = document.querySelector('.nav-links');
+    const header = document.querySelector('header');
 
-    // Toggle Mobile Menu
     if (mobileMenu && navLinks) {
         mobileMenu.addEventListener('click', () => {
+            const expanded = mobileMenu.getAttribute('aria-expanded') === 'true';
             navLinks.classList.toggle('active');
-            mobileMenu.classList.toggle('toggle');
+            mobileMenu.setAttribute('aria-expanded', String(!expanded));
+        });
+
+        navLinks.querySelectorAll('a').forEach((link) => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                mobileMenu.setAttribute('aria-expanded', 'false');
+            });
         });
     }
 
-    // Smooth scroll for anchor links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
+    document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener('click', function onAnchorClick(event) {
             const targetSelector = this.getAttribute('href');
             const target = targetSelector ? document.querySelector(targetSelector) : null;
+
             if (!target) {
                 return;
             }
 
-            e.preventDefault();
-            target.scrollIntoView({
-                behavior: 'smooth'
-            });
+            event.preventDefault();
+            target.scrollIntoView({ behavior: 'smooth' });
         });
     });
 
-    // Header scroll effect
     window.addEventListener('scroll', () => {
-        const header = document.querySelector('header');
-        if (window.scrollY > 50) {
-            header.style.padding = '10px 0';
-            header.style.backgroundColor = '#ffffff';
-        } else {
-            header.style.padding = '20px 0';
+        if (!header) {
+            return;
         }
+
+        header.style.padding = window.scrollY > 50 ? '12px 0' : '20px 0';
     });
+
+    const revealItems = document.querySelectorAll('.reveal');
+    if ('IntersectionObserver' in window && revealItems.length > 0) {
+        const observer = new IntersectionObserver((entries, obs) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    obs.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.15 });
+
+        revealItems.forEach((item) => observer.observe(item));
+    } else {
+        revealItems.forEach((item) => item.classList.add('visible'));
+    }
 });

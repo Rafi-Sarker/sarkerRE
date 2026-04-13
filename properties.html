@@ -4,63 +4,64 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Properties | Sarker Real Estates Ltd.</title>
+    <meta name="description" content="Explore premium residential and commercial projects by Sarker Real Estates.">
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <header>
         <nav class="container">
-            <div class="logo">
+            <a class="logo" href="index.html" aria-label="Sarker Real Estates home">
                 <span class="brand-name">SARKER</span>
                 <span class="sub-brand">REAL ESTATES LTD.</span>
-            </div>
-            <ul class="nav-links">
+            </a>
+            <ul class="nav-links" id="main-nav">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="properties.html" class="active">Properties</a></li>
                 <li><a href="index.html#about">About Us</a></li>
                 <li><a href="contact.html">Contact</a></li>
             </ul>
-            <div class="menu-toggle" id="mobile-menu">
+            <button class="menu-toggle" id="mobile-menu" type="button" aria-label="Toggle navigation" aria-expanded="false" aria-controls="main-nav">
                 <span></span>
                 <span></span>
                 <span></span>
-            </div>
+            </button>
         </nav>
     </header>
 
     <section class="page-banner">
-        <div class="container">
+        <div class="container reveal">
             <h1>Our Portfolio</h1>
             <p>Exclusive listings and architectural masterpieces.</p>
         </div>
     </section>
 
-    <section class="container" style="padding: 60px 20px;">
+    <section class="container properties-section">
         <div class="grid">
-            <div class="card">
-                <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=800&q=80')"></div>
+            <article class="card reveal">
+                <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1200&q=80')"></div>
                 <div class="card-info">
                     <span class="tag">Residential</span>
                     <h3>Skyline Manor</h3>
-                    <p>Modern duplex with panoramic city views.</p>
+                    <p>Modern duplex with panoramic city views and curated social amenities.</p>
                 </div>
-            </div>
-            <div class="card">
-                <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1600607687940-4e2a09695d51?auto=format&fit=crop&w=800&q=80')"></div>
+            </article>
+            <article class="card reveal">
+                <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1600607687940-4e2a09695d51?auto=format&fit=crop&w=1200&q=80')"></div>
                 <div class="card-info">
                     <span class="tag">Commercial</span>
                     <h3>Sarker Business Hub</h3>
-                    <p>High-tech office spaces for the modern enterprise.</p>
+                    <p>High-tech office spaces tailored for growth-ready companies.</p>
                 </div>
-            </div>
-            <div class="card">
-                <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&w=800&q=80')"></div>
+            </article>
+            <article class="card reveal">
+                <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&w=1200&q=80')"></div>
                 <div class="card-info">
                     <span class="tag">Luxury</span>
                     <h3>The Gold Coast Villa</h3>
-                    <p>Peaceful beachfront living with private access.</p>
+                    <p>Private beachfront access with designer finishes and discreet security.</p>
                 </div>
-            </div>
+            </article>
         </div>
     </section>
 
@@ -81,8 +82,8 @@
             </div>
             <div>
                 <h4>Contact</h4>
-                <p>info@sarkerestates.com</p>
-                <p>+880 1XXX-XXXXXX</p>
+                <p><a href="mailto:info@sarkerestates.com">info@sarkerestates.com</a></p>
+                <p><a href="tel:+8801000000000">+880 1000-000000</a></p>
                 <p>Bashundhara Riverview, Dhaka</p>
             </div>
         </div>
@@ -90,6 +91,7 @@
             <p>&copy; 2026 Sarker Real Estates Ltd. All rights reserved.</p>
         </div>
     </footer>
+
     <script src="script.js"></script>
 </body>
 </html>
