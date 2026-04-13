@@ -65,6 +65,19 @@ nav {
     list-style: none;
 }
 
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    gap: 5px;
+}
+
+.menu-toggle span {
+    width: 24px;
+    height: 2px;
+    background: var(--text-dark);
+}
+
 .nav-links li a {
     text-decoration: none;
     color: var(--text-dark);
@@ -151,7 +164,23 @@ nav {
 
 @media (max-width: 768px) {
     .hero h1 { font-size: 2.5rem; }
-    .nav-links { display: none; } /* Add JS for mobile menu */
+    .menu-toggle { display: flex; }
+    .nav-links {
+        display: none;
+        position: absolute;
+        top: 72px;
+        left: 0;
+        width: 100%;
+        background: var(--white);
+        flex-direction: column;
+        padding: 20px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    }
+    .nav-links.active { display: flex; }
+    .nav-links li a {
+        margin: 10px 0;
+        display: block;
+    }
 }
 
 .page-banner {
@@ -176,4 +205,54 @@ nav {
     margin-bottom: 20px;
     text-align: center;
     color: var(--primary-green);
+}
+
+.site-footer {
+    margin-top: 60px;
+    background: linear-gradient(135deg, #143326 0%, #1A4332 60%, #255842 100%);
+    color: var(--white);
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 30px;
+    padding: 50px 20px 30px;
+}
+
+.site-footer h3,
+.site-footer h4 {
+    font-family: 'Playfair Display', serif;
+    margin-bottom: 12px;
+}
+
+.site-footer p,
+.site-footer li,
+.site-footer a {
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.site-footer ul {
+    list-style: none;
+    padding: 0;
+}
+
+.site-footer li {
+    margin: 8px 0;
+}
+
+.site-footer a {
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.site-footer a:hover {
+    color: var(--gold);
+}
+
+.footer-bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    text-align: center;
+    padding: 16px 20px 20px;
+    font-size: 0.9rem;
 }
