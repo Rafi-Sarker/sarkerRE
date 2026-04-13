@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Client Dashboard | Sarker Real Estates Ltd.</title>
+    <meta name="description" content="Investor dashboard for viewing project-wise investment details.">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <a class="logo" href="index.html" aria-label="Sarker Real Estates home">
+                <span class="brand-name">SARKER</span>
+                <span class="sub-brand">REAL ESTATES LTD.</span>
+            </a>
+            <ul class="nav-links" id="main-nav">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="properties.html">Properties</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="user.html" class="active">Client Portal</a></li>
+            </ul>
+            <button class="menu-toggle" id="mobile-menu" type="button" aria-label="Toggle navigation" aria-expanded="false" aria-controls="main-nav">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </nav>
+    </header>
+
+    <main class="container dashboard-wrap">
+        <section id="loginPage" class="auth-card reveal visible">
+            <h1>Client Login</h1>
+            <p>Use your username and password to view your investment details.</p>
+            <label for="username">Username</label>
+            <input id="username" type="text" placeholder="Username">
+            <label for="password">Password</label>
+            <input id="password" type="password" placeholder="Password">
+            <button id="pageLoginSubmit" class="btn btn-primary" type="button">Login</button>
+        </section>
+
+        <section id="dashboardPage" class="dashboard-page" style="display: none;">
+            <div class="dashboard-head reveal visible">
+                <h1>Welcome, <span id="user">Investor</span></h1>
+                <button id="logoutBtn" class="btn btn-secondary" type="button">Logout</button>
+            </div>
+
+            <div class="stats-grid reveal visible">
+                <article class="stat-card"><h3>Total Portfolio Value</h3><p id="investment">৳0</p></article>
+                <article class="stat-card"><h3>Total Invested</h3><p id="invested">৳0</p></article>
+                <article class="stat-card"><h3>Total Projects</h3><p id="totalProjects">0</p></article>
+            </div>
+
+            <section class="reveal visible">
+                <h2 class="section-title section-left">Project Breakdown</h2>
+                <div id="projectList" class="dashboard-grid"></div>
+            </section>
+
+            <section class="reveal visible">
+                <h2 class="section-title section-left">Investment History</h2>
+                <div class="table-wrap">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Project</th>
+                                <th>Amount</th>
+                                <th>Date</th>
+                            </tr>
+                        </thead>
+                        <tbody id="historyTable"></tbody>
+                    </table>
+                </div>
+            </section>
+
+            <section class="reveal visible">
+                <h2 class="section-title section-left">Client Reviews</h2>
+                <div id="reviewList" class="review-list"></div>
+            </section>
+        </section>
+    </main>
+
+    <div class="utility-tools">
+        <button id="noticeToggle" class="utility-btn" type="button">Notices <span id="noticeCount">0</span></button>
+    </div>
+
+    <aside id="noticePanel" class="notice-panel">
+        <div class="notice-head">
+            <h3>Notice Board</h3>
+            <button type="button" class="plain-btn" onclick="toggleNoticePanel()">Close</button>
+        </div>
+        <div id="noticeList"></div>
+    </aside>
+
+    <div id="noticeModal" class="overlay-modal" onclick="closeNotice()">
+        <div class="overlay-card" onclick="event.stopPropagation()">
+            <h3 id="noticeTitle">Notice</h3>
+            <p id="noticeMessage"></p>
+            <button class="btn btn-primary" type="button" onclick="closeNotice()">Close</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

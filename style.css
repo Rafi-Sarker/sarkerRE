@@ -516,3 +516,117 @@ nav {
         height: 220px;
     }
 }
+
+.dashboard-wrap {
+    padding: clamp(42px, 5vw, 70px) 0 clamp(60px, 8vw, 90px);
+}
+
+.auth-card {
+    max-width: 480px;
+    margin: 0 auto;
+    background: var(--light-cream);
+    border-radius: 14px;
+    box-shadow: var(--shadow-soft);
+    padding: 24px;
+}
+
+.auth-card h1 {
+    margin-bottom: 8px;
+}
+
+.auth-card input {
+    width: 100%;
+    border: 1px solid #d7dad6;
+    border-radius: 6px;
+    padding: 10px;
+    margin: 6px 0 12px;
+}
+
+.dashboard-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 14px;
+    margin-bottom: 26px;
+}
+
+.stat-card,
+.project-card {
+    background: var(--light-cream);
+    border-radius: 12px;
+    padding: 16px;
+    box-shadow: var(--shadow-soft);
+}
+
+.stat-card p {
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: var(--primary-green);
+}
+
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 14px;
+    margin-bottom: 26px;
+}
+
+.progress-bar {
+    background: #e4e8e4;
+    border-radius: 999px;
+    height: 20px;
+    overflow: hidden;
+}
+
+.progress {
+    height: 100%;
+    display: grid;
+    place-items: center;
+    background: linear-gradient(135deg, var(--gold), #b58c3f);
+    color: var(--white);
+    font-size: 0.72rem;
+    font-weight: 700;
+}
+
+.table-wrap {
+    overflow-x: auto;
+    margin-bottom: 26px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--white);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+th,
+td {
+    border-bottom: 1px solid #e7ebe7;
+    padding: 10px;
+    text-align: left;
+}
+
+.review-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 12px;
+}
+
+.review-card {
+    background: var(--light-cream);
+    border-radius: 10px;
+    padding: 14px;
+}
+
+.review-stars {
+    margin: 4px 0;
+}
