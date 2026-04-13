@@ -277,8 +277,8 @@ function loadDashboard() {
 }
 
 // ===== REVIEWS (FROM INVESTORS) =====
-function loadReviews() {
-    const box = document.getElementById('reviewList');
+function renderReviewsInto(containerId) {
+    const box = document.getElementById(containerId);
     if (!box) return;
 
     const reviewUsers = investors.filter((i) => i.comment && i.comment.trim() !== '');
@@ -304,6 +304,11 @@ function loadReviews() {
     });
 
     box.innerHTML = html;
+}
+
+function loadReviews() {
+    renderReviewsInto('homeReviewList');
+    renderReviewsInto('aboutReviewList');
 }
 
 // ===== NOTICES =====
@@ -345,6 +350,21 @@ function loadNotices() {
 
     const list = document.getElementById('noticeList');
     if (list) list.innerHTML = html;
+
+    const cardList = document.getElementById('noticeCardList');
+    if (cardList) {
+        if (filtered.length === 0) {
+            cardList.innerHTML = '<article class="notice-card"><h3>No notices available</h3><p>Please check back later for updates.</p></article>';
+        } else {
+            cardList.innerHTML = filtered.map((n, i) => `
+                <article class="notice-card ${String(n.pin).toLowerCase() === 'true' ? 'pinned' : ''}" onclick="openNotice(${i})">
+                    <h3>${n.title || 'No Title'} ${String(n.pin).toLowerCase() === 'true' ? '📌' : ''}</h3>
+                    <p>${n.message || 'No details available.'}</p>
+                    <small>${n.date || '-'}</small>
+                </article>
+            `).join('');
+        }
+    }
 
     const badge = document.getElementById('noticeCount');
     if (badge) badge.innerText = unreadCount;
