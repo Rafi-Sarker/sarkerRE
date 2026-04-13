@@ -65,6 +65,19 @@ nav {
     list-style: none;
 }
 
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    gap: 5px;
+}
+
+.menu-toggle span {
+    width: 24px;
+    height: 2px;
+    background: var(--text-dark);
+}
+
 .nav-links li a {
     text-decoration: none;
     color: var(--text-dark);
@@ -151,7 +164,23 @@ nav {
 
 @media (max-width: 768px) {
     .hero h1 { font-size: 2.5rem; }
-    .nav-links { display: none; } /* Add JS for mobile menu */
+    .menu-toggle { display: flex; }
+    .nav-links {
+        display: none;
+        position: absolute;
+        top: 72px;
+        left: 0;
+        width: 100%;
+        background: var(--white);
+        flex-direction: column;
+        padding: 20px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    }
+    .nav-links.active { display: flex; }
+    .nav-links li a {
+        margin: 10px 0;
+        display: block;
+    }
 }
 
 .page-banner {
