@@ -206,3 +206,53 @@ nav {
     text-align: center;
     color: var(--primary-green);
 }
+
+.site-footer {
+    margin-top: 60px;
+    background: linear-gradient(135deg, #143326 0%, #1A4332 60%, #255842 100%);
+    color: var(--white);
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 30px;
+    padding: 50px 20px 30px;
+}
+
+.site-footer h3,
+.site-footer h4 {
+    font-family: 'Playfair Display', serif;
+    margin-bottom: 12px;
+}
+
+.site-footer p,
+.site-footer li,
+.site-footer a {
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.site-footer ul {
+    list-style: none;
+    padding: 0;
+}
+
+.site-footer li {
+    margin: 8px 0;
+}
+
+.site-footer a {
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.site-footer a:hover {
+    color: var(--gold);
+}
+
+.footer-bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    text-align: center;
+    padding: 16px 20px 20px;
+    font-size: 0.9rem;
+}
