@@ -95,9 +95,17 @@ function getSessionUser() {
 
 // ===== CSV PARSER =====
 function parseCSV(text) {
-    const rows = text.trim().split('\n').map((r) => r.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/));
+    const lines = text
+        .trim()
+        .split(/\r?\n/)
+        .filter((line) => line.trim() !== '');
 
-    const headers = rows.shift().map((h) => h.trim().toLowerCase());
+    if (!lines.length) {
+        return [];
+    }
+
+    const rows = lines.map((r) => r.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/));
+    const headers = (rows.shift() || []).map((h) => h.trim().toLowerCase());
 
     return rows.map((r) => {
         const obj = {};
@@ -138,6 +146,17 @@ async function initSheets() {
 }
 
 // ===== LOGIN =====
+
+function getLoginCredentials() {
+    const usernameEl = document.getElementById('page-username') || document.getElementById('modal-username') || document.getElementById('username');
+    const passwordEl = document.getElementById('page-password') || document.getElementById('modal-password') || document.getElementById('password');
+
+    return {
+        username: usernameEl?.value.trim() || '',
+        password: passwordEl?.value.trim() || ''
+    };
+}
+
 function waitForDataAndLogin() {
     if (!isDataLoaded) {
         setTimeout(waitForDataAndLogin, 500);
@@ -147,10 +166,14 @@ function waitForDataAndLogin() {
 }
 
 function login() {
-    const u = document.getElementById('username')?.value.trim();
-    const p = document.getElementById('password')?.value.trim();
+    const { username, password } = getLoginCredentials();
 
-    currentUser = investors.find((i) => i.username === u && i.password === p);
+    if (!username || !password) {
+        alert('Please enter both username and password');
+        return;
+    }
+
+    currentUser = investors.find((i) => i.username === username && i.password === password);
 
     if (!currentUser) {
         alert('❌ Wrong username or password');
@@ -446,6 +469,19 @@ document.addEventListener('DOMContentLoaded', () => {
     if (logoutBtn) {
         logoutBtn.addEventListener('click', logoutUser);
     }
+
+    const loginInputs = ['page-username', 'page-password', 'modal-username', 'modal-password']
+        .map((id) => document.getElementById(id))
+        .filter(Boolean);
+
+    loginInputs.forEach((input) => {
+        input.addEventListener('keydown', (event) => {
+            if (event.key === 'Enter') {
+                event.preventDefault();
+                waitForDataAndLogin();
+            }
+        });
+    });
 
     initSheets();
 });
