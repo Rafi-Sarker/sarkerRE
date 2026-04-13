@@ -4,67 +4,80 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sarker Real Estates Ltd. | Built on Trust</title>
+    <meta name="description" content="Sarker Real Estates creates premium residential and commercial addresses designed for modern living.">
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-
     <header>
         <nav class="container">
-            <div class="logo">
+            <a class="logo" href="index.html" aria-label="Sarker Real Estates home">
                 <span class="brand-name">SARKER</span>
                 <span class="sub-brand">REAL ESTATES LTD.</span>
-            </div>
-            <ul class="nav-links">
+            </a>
+            <ul class="nav-links" id="main-nav">
                 <li><a href="index.html" class="active">Home</a></li>
-                <li><a href="#properties">Properties</a></li>
-                <li><a href="#about">About Us</a></li>
+                <li><a href="properties.html">Properties</a></li>
+                <li><a href="index.html#about">About Us</a></li>
                 <li><a href="contact.html">Contact</a></li>
             </ul>
-            <div class="menu-toggle" id="mobile-menu">
+            <button class="menu-toggle" id="mobile-menu" type="button" aria-label="Toggle navigation" aria-expanded="false" aria-controls="main-nav">
                 <span></span>
                 <span></span>
                 <span></span>
-            </div>
+            </button>
         </nav>
     </header>
 
     <section class="hero">
-        <div class="hero-content container">
+        <div class="hero-orb orb-one"></div>
+        <div class="hero-orb orb-two"></div>
+        <div class="hero-content container reveal">
+            <p class="eyebrow">Premium Urban Living</p>
             <h1>Architecture Built <br><span class="highlight">On Trust</span></h1>
-            <p>Experience the gold standard in modern living with Sarker Real Estates Ltd.</p>
+            <p>Experience elevated design, transparent transactions, and curated properties across Dhaka's most desirable neighborhoods.</p>
             <div class="cta-buttons">
-                <a href="#properties" class="btn btn-primary">View Projects</a>
+                <a href="properties.html" class="btn btn-primary">View Projects</a>
                 <a href="contact.html" class="btn btn-secondary">Get in Touch</a>
             </div>
         </div>
     </section>
 
     <section id="properties" class="featured container">
-        <h2 class="section-title">Featured Developments</h2>
+        <h2 class="section-title reveal">Featured Developments</h2>
         <div class="grid">
-            <div class="card">
-                <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=800&q=80')"></div>
+            <article class="card reveal">
+                <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1200&q=80')"></div>
                 <div class="card-info">
+                    <span class="tag">Signature Living</span>
                     <h3>The Emerald Residency</h3>
-                    <p>Modern Living, Redefined.</p>
+                    <p>Sky gardens, curated interiors, and wellness-centered community spaces.</p>
                 </div>
-            </div>
-            <div class="card">
-                <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80')"></div>
+            </article>
+            <article class="card reveal">
+                <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80')"></div>
                 <div class="card-info">
+                    <span class="tag">Luxury Apartments</span>
                     <h3>Golden Gate Suites</h3>
-                    <p>Luxury in Every Detail.</p>
+                    <p>Concierge services and timeless architecture crafted for refined families.</p>
                 </div>
-            </div>
+            </article>
+            <article class="card reveal">
+                <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1200&q=80')"></div>
+                <div class="card-info">
+                    <span class="tag">Waterfront</span>
+                    <h3>Riverview Pearl</h3>
+                    <p>Breathtaking river views paired with modern smart-home convenience.</p>
+                </div>
+            </article>
         </div>
     </section>
 
-    <section id="about" class="container" style="padding: 80px 20px; text-align: center;">
+    <section id="about" class="about container reveal">
         <h2 class="section-title">About Sarker Real Estates</h2>
         <p>
-            We design premium residential and commercial spaces with a commitment to quality,
-            transparency, and long-term value for our clients.
+            We design and deliver premium residential and commercial spaces with uncompromising quality,
+            clear communication, and long-term investment value for every client.
         </p>
     </section>
 
@@ -85,8 +98,8 @@
             </div>
             <div>
                 <h4>Contact</h4>
-                <p>info@sarkerestates.com</p>
-                <p>+880 1XXX-XXXXXX</p>
+                <p><a href="mailto:info@sarkerestates.com">info@sarkerestates.com</a></p>
+                <p><a href="tel:+8801000000000">+880 1000-000000</a></p>
                 <p>Bashundhara Riverview, Dhaka</p>
             </div>
         </div>
