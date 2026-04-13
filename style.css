@@ -617,22 +617,27 @@ td {
 
 .review-list {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 12px;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 10px;
 }
 
 .review-card {
-    background: var(--light-cream);
-    border-radius: 10px;
-    padding: 14px;
+    background: var(--white);
+    border: 1px solid #e5e8e4;
+    border-radius: 12px;
+    padding: 16px;
+    box-shadow: 0 6px 20px rgba(15, 44, 34, 0.06);
 }
 
 .review-stars {
-    margin: 4px 0;
+    margin: 6px 0 8px;
+    color: #b58c3f;
+    letter-spacing: 1px;
+    font-size: 0.92rem;
 }
 
-.portal-premium-banner {
-    background: linear-gradient(135deg, #102f24, #1c4d3b);
+.portal-welcome-banner {
+    background: linear-gradient(140deg, #12382b 0%, #1a4b3a 65%, #215d46 100%);
     color: var(--white);
     border-radius: 16px;
     padding: 28px;
@@ -640,23 +645,13 @@ td {
     box-shadow: var(--shadow-soft);
 }
 
-.live-badge {
-    display: inline-block;
-    background: #1ed760;
-    color: #0e231b;
-    padding: 4px 10px;
-    border-radius: 999px;
-    font-size: 0.85rem;
-    margin-left: 8px;
-    vertical-align: middle;
-}
-
 .about-reviews-card {
     margin-top: 24px;
-    background: var(--light-cream);
+    background: #fbfcfb;
+    border: 1px solid #e6ebe6;
     border-radius: 12px;
     padding: 18px;
-    box-shadow: var(--shadow-soft);
+    box-shadow: 0 8px 26px rgba(20, 59, 46, 0.08);
 }
 
 .notice-board-section {
@@ -695,7 +690,8 @@ td {
 }
 
 .review-empty {
-    background: var(--light-cream);
+    background: #fbfcfb;
+    border: 1px dashed #d5ddd5;
     border-radius: 10px;
     padding: 14px;
 }
