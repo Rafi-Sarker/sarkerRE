@@ -92,6 +92,38 @@
         </div>
     </footer>
 
+    <div class="utility-tools">
+        <button id="noticeToggle" class="utility-btn" type="button">Notices <span id="noticeCount">0</span></button>
+        <button id="loginToggle" class="utility-btn" type="button">Investor Login</button>
+    </div>
+
+    <aside id="noticePanel" class="notice-panel">
+        <div class="notice-head">
+            <h3>Notice Board</h3>
+            <button type="button" class="plain-btn" onclick="toggleNoticePanel()">Close</button>
+        </div>
+        <div id="noticeList"></div>
+    </aside>
+
+    <div id="noticeModal" class="overlay-modal" onclick="closeNotice()">
+        <div class="overlay-card" onclick="event.stopPropagation()">
+            <h3 id="noticeTitle">Notice</h3>
+            <p id="noticeMessage"></p>
+            <button class="btn btn-primary" type="button" onclick="closeNotice()">Close</button>
+        </div>
+    </div>
+
+    <div id="loginModal" class="overlay-modal" onclick="closeLoginModal()">
+        <div class="overlay-card" onclick="event.stopPropagation()">
+            <h3>Investor Login</h3>
+            <label for="username">Username</label>
+            <input id="username" type="text" placeholder="Username">
+            <label for="password">Password</label>
+            <input id="password" type="password" placeholder="Password">
+            <button id="loginSubmit" class="btn btn-primary" type="button">Login</button>
+        </div>
+    </div>
+
     <script src="script.js"></script>
 </body>
 </html>

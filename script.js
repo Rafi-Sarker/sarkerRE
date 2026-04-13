@@ -57,7 +57,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
-/*
 // ===== CONFIG =====
 const BASE = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQkLvYO7zFb0hAHx-c1Y_oIjFd9XrLVc3PNbO3SFkcDZB0c0cN1rSufukzRr2kqA1nacfBpNOw9vPuX/pub";
 
@@ -329,9 +328,41 @@ function closeNotice() {
   document.getElementById("noticeModal") && (document.getElementById("noticeModal").style.display = "none");
 }
 
+function toggleNoticePanel() {
+  const panel = document.getElementById("noticePanel");
+  if (!panel) return;
+  panel.classList.toggle("open");
+}
+
+function openLoginModal() {
+  const modal = document.getElementById("loginModal");
+  if (!modal) return;
+  modal.style.display = "flex";
+}
+
+function closeLoginModal() {
+  const modal = document.getElementById("loginModal");
+  if (!modal) return;
+  modal.style.display = "none";
+}
+
 // ===== INIT =====
 document.addEventListener("DOMContentLoaded", () => {
+  const noticeToggle = document.getElementById("noticeToggle");
+  const loginToggle = document.getElementById("loginToggle");
+  const loginSubmit = document.getElementById("loginSubmit");
+
+  if (noticeToggle) {
+    noticeToggle.addEventListener("click", toggleNoticePanel);
+  }
+
+  if (loginToggle) {
+    loginToggle.addEventListener("click", openLoginModal);
+  }
+
+  if (loginSubmit) {
+    loginSubmit.addEventListener("click", waitForDataAndLogin);
+  }
+
   initSheets();
 });
-
-*/
