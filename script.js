@@ -313,8 +313,7 @@ function loadDashboard() {
           <p><b>Total Value:</b> ৳${inv.total}</p>
           <p><b>Invested:</b> ৳${investedSum}</p>
           <div class="progress-bar">
-            <progress class="progress-meter" max="100" value="${progress}"></progress>
-            <span class="progress-label">${progress}%</span>
+            <div class="progress" data-progress="${progress}">${progress}%</div>
           </div>
         </div>
       </div>
@@ -342,6 +341,11 @@ function loadDashboard() {
     if (investedEl) investedEl.innerText = `৳${totalInvested}`;
     if (totalProjectsEl) totalProjectsEl.innerText = Object.keys(grouped).length;
     if (projectListEl) projectListEl.innerHTML = projectHTML || '<p>No active projects found.</p>';
+    if (projectListEl) {
+        projectListEl.querySelectorAll('.progress[data-progress]').forEach((bar) => {
+            bar.style.width = `${bar.dataset.progress}%`;
+        });
+    }
     if (historyTableEl) {
         historyTableEl.innerHTML = historyHTML || '<tr><td colspan="3">No investment history found.</td></tr>';
     }
@@ -493,37 +497,24 @@ function closeLoginModal() {
 function openProjectDetailsFromCard(card) {
     if (!card) return;
 
-    const projectKey = card.dataset.projectKey;
-    if (!projectKey) return;
-    window.location.href = `details.html?project=${encodeURIComponent(projectKey)}`;
+    const title = card.dataset.projectTitle || 'Project Details';
+    const details = card.dataset.projectDetails || 'No details available.';
+    const location = card.dataset.projectLocation || '-';
+
+    const titleEl = document.getElementById('projectTitle');
+    const detailsEl = document.getElementById('projectDetails');
+    const locationEl = document.getElementById('projectLocation');
+    const modalEl = document.getElementById('projectModal');
+
+    if (titleEl) titleEl.innerText = title;
+    if (detailsEl) detailsEl.innerText = details;
+    if (locationEl) locationEl.innerText = location;
+    if (modalEl) modalEl.style.display = 'flex';
 }
 
-function loadProjectDetailsPage() {
-    const titleEl = document.getElementById('detailTitle');
-    if (!titleEl) return;
-
-    const params = new URLSearchParams(window.location.search);
-    const key = params.get('project') || 'skyline-manor';
-    const project = PROJECT_DETAILS[key] || PROJECT_DETAILS['skyline-manor'];
-
-    const locationEl = document.getElementById('detailLocation');
-    const descriptionEl = document.getElementById('detailDescription');
-    const highlightsEl = document.getElementById('detailHighlights');
-    const galleryEl = document.getElementById('detailGallery');
-
-    titleEl.innerText = project.title;
-    if (locationEl) locationEl.innerText = project.location;
-    if (descriptionEl) descriptionEl.innerText = project.description;
-
-    if (highlightsEl) {
-        highlightsEl.innerHTML = project.highlights.map((item) => `<li>${item}</li>`).join('');
-    }
-
-    if (galleryEl) {
-        galleryEl.innerHTML = project.gallery.map((src, index) => `
-            <img src="${src}" alt="${project.title} gallery image ${index + 1}" loading="lazy">
-        `).join('');
-    }
+function closeProjectDetails() {
+    const modal = document.getElementById('projectModal');
+    if (modal) modal.style.display = 'none';
 }
 
 // ===== INIT =====
@@ -553,39 +544,6 @@ document.addEventListener('DOMContentLoaded', () => {
     if (logoutBtn) {
         logoutBtn.addEventListener('click', logoutUser);
     }
-
-    document.querySelectorAll('[data-action="toggle-notice-panel"]').forEach((btn) => {
-        btn.addEventListener('click', toggleNoticePanel);
-    });
-
-    document.querySelectorAll('[data-action="close-notice"]').forEach((btn) => {
-        btn.addEventListener('click', closeNotice);
-    });
-
-    const noticeModal = document.getElementById('noticeModal');
-    if (noticeModal) {
-        noticeModal.addEventListener('click', (event) => {
-            if (event.target === noticeModal) {
-                closeNotice();
-            }
-        });
-    }
-
-    const loginModal = document.getElementById('loginModal');
-    if (loginModal) {
-        loginModal.addEventListener('click', (event) => {
-            if (event.target === loginModal) {
-                closeLoginModal();
-            }
-        });
-    }
-
-    document.addEventListener('click', (event) => {
-        const noticeItem = event.target.closest('[data-notice-index]');
-        if (noticeItem) {
-            openNotice(Number(noticeItem.dataset.noticeIndex));
-        }
-    });
 
     const detailCards = document.querySelectorAll('.project-detail-card');
     detailCards.forEach((card) => {

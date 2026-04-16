@@ -41,7 +41,6 @@
         <div class="grid">
             <article
                 class="card reveal project-detail-card"
-                data-project-key="skyline-manor"
                 data-project-title="Skyline Manor"
                 data-project-details="Modern duplex with panoramic city views and curated social amenities."
                 data-project-location="Gulshan, Dhaka"
@@ -58,7 +57,6 @@
             </article>
             <article
                 class="card reveal project-detail-card"
-                data-project-key="sarker-business-hub"
                 data-project-title="Sarker Business Hub"
                 data-project-details="High-tech office spaces tailored for growth-ready companies."
                 data-project-location="Banani, Dhaka"
@@ -75,7 +73,6 @@
             </article>
             <article
                 class="card reveal project-detail-card"
-                data-project-key="gold-coast-villa"
                 data-project-title="The Gold Coast Villa"
                 data-project-details="Private beachfront access with designer finishes and discreet security."
                 data-project-location="Cox's Bazar, Bangladesh"
@@ -92,7 +89,6 @@
             </article>
             <article
                 class="card reveal project-detail-card"
-                data-project-key="shamlapur-green-zone"
                 data-project-title="Shamlapur Green Zone"
                 data-project-details="Strategically located land at Kolatia, Shamlapur, Savar near the Buriganga River and Dhanmondi-side approach, positioned for strong future value as greater Dhaka expands toward this green belt corridor."
                 data-project-location="Kolatia, Shamlapur, Savar"
@@ -156,6 +152,15 @@
             <h3 id="noticeTitle">Notice</h3>
             <p id="noticeMessage"></p>
             <button class="btn btn-primary" type="button" data-action="close-notice">Close</button>
+        </div>
+    </div>
+
+    <div id="projectModal" class="overlay-modal" onclick="closeProjectDetails()">
+        <div class="overlay-card" onclick="event.stopPropagation()">
+            <h3 id="projectTitle">Project Details</h3>
+            <p id="projectDetails"></p>
+            <p><strong>Location:</strong> <span id="projectLocation">-</span></p>
+            <button class="btn btn-primary" type="button" onclick="closeProjectDetails()">Close</button>
         </div>
     </div>
 
