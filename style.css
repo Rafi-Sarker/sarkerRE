@@ -592,20 +592,35 @@ nav {
 }
 
 .progress-bar {
-    background: #e4e8e4;
-    border-radius: 999px;
-    height: 20px;
-    overflow: hidden;
+    margin-top: 10px;
 }
 
-.progress {
-    height: 100%;
-    display: grid;
-    place-items: center;
+.progress-meter {
+    width: 100%;
+    height: 14px;
+}
+
+.progress-meter::-webkit-progress-bar {
+    background: #e4e8e4;
+    border-radius: 999px;
+}
+
+.progress-meter::-webkit-progress-value {
     background: linear-gradient(135deg, var(--gold), #b58c3f);
-    color: var(--white);
-    font-size: 0.72rem;
+    border-radius: 999px;
+}
+
+.progress-meter::-moz-progress-bar {
+    background: linear-gradient(135deg, var(--gold), #b58c3f);
+    border-radius: 999px;
+}
+
+.progress-label {
+    display: inline-block;
+    margin-top: 6px;
+    font-size: 0.78rem;
     font-weight: 700;
+    color: var(--primary-green);
 }
 
 .table-wrap {
