@@ -567,28 +567,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const logoutBtn = document.getElementById('logoutBtn');
 
     document.addEventListener('click', (event) => {
-        const actionTarget = event.target.closest('[data-action]');
-        if (actionTarget) {
-            const action = actionTarget.dataset.action;
-            if (action === 'close-notice') {
-                closeNotice();
-                return;
-            }
-            if (action === 'toggle-notice-panel') {
-                toggleNoticePanel();
-                return;
-            }
-        }
+        const target = event.target.closest('[data-action]');
+        if (!target) return;
 
-        const noticeTarget = event.target.closest('[data-notice-index]');
-        if (!noticeTarget) return;
-
-        const isNoticeListClick = noticeTarget.closest('#noticeList') || noticeTarget.closest('#noticeCardList');
-        if (!isNoticeListClick) return;
-
-        const index = Number(noticeTarget.dataset.noticeIndex);
-        if (!Number.isNaN(index)) {
-            openNotice(index);
+        const action = target.dataset.action;
+        if (action === 'close-notice') {
+            closeNotice();
+        } else if (action === 'toggle-notice-panel') {
+            toggleNoticePanel();
         }
     });
 
