@@ -39,7 +39,15 @@
 
     <section class="container properties-section">
         <div class="grid">
-            <article class="card reveal">
+            <article
+                class="card reveal project-detail-card"
+                data-project-title="Skyline Manor"
+                data-project-details="Modern duplex with panoramic city views and curated social amenities."
+                data-project-location="Gulshan, Dhaka"
+                tabindex="0"
+                role="button"
+                aria-label="View details for Skyline Manor"
+            >
                 <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1200&q=80')"></div>
                 <div class="card-info">
                     <span class="tag">Residential</span>
@@ -47,7 +55,15 @@
                     <p>Modern duplex with panoramic city views and curated social amenities.</p>
                 </div>
             </article>
-            <article class="card reveal">
+            <article
+                class="card reveal project-detail-card"
+                data-project-title="Sarker Business Hub"
+                data-project-details="High-tech office spaces tailored for growth-ready companies."
+                data-project-location="Banani, Dhaka"
+                tabindex="0"
+                role="button"
+                aria-label="View details for Sarker Business Hub"
+            >
                 <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1600607687940-4e2a09695d51?auto=format&fit=crop&w=1200&q=80')"></div>
                 <div class="card-info">
                     <span class="tag">Commercial</span>
@@ -55,7 +71,15 @@
                     <p>High-tech office spaces tailored for growth-ready companies.</p>
                 </div>
             </article>
-            <article class="card reveal">
+            <article
+                class="card reveal project-detail-card"
+                data-project-title="The Gold Coast Villa"
+                data-project-details="Private beachfront access with designer finishes and discreet security."
+                data-project-location="Cox's Bazar, Bangladesh"
+                tabindex="0"
+                role="button"
+                aria-label="View details for The Gold Coast Villa"
+            >
                 <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&w=1200&q=80')"></div>
                 <div class="card-info">
                     <span class="tag">Luxury</span>
@@ -63,13 +87,20 @@
                     <p>Private beachfront access with designer finishes and discreet security.</p>
                 </div>
             </article>
-            <article class="card reveal">
+            <article
+                class="card reveal project-detail-card"
+                data-project-title="Shamlapur Green Zone"
+                data-project-details="Strategically located land at Kolatia, Shamlapur, Savar near the Buriganga River and Dhanmondi-side approach, positioned for strong future value as greater Dhaka expands toward this green belt corridor."
+                data-project-location="Kolatia, Shamlapur, Savar"
+                tabindex="0"
+                role="button"
+                aria-label="View details for Shamlapur Green Zone"
+            >
                 <div class="card-img" style="background-image: url('shamlapur.jpg')"></div>
                 <div class="card-info">
                     <span class="tag">Land Development</span>
                     <h3>Shamlapur Green Zone</h3>
-                    <p>Strategically located land at Kolatia, Shamlapur, Savar near the Buriganga River and Dhanmondi-side approach, positioned for strong future value as greater Dhaka expands toward this green belt corridor.</p>
-                    <p><strong>Location:</strong> Kolatia, Shamlapur, Savar</p>
+                    <p>Premium land development opportunity in Savar with high long-term growth potential.</p>
                 </div>
             </article>
         </div>
@@ -121,6 +152,15 @@
             <h3 id="noticeTitle">Notice</h3>
             <p id="noticeMessage"></p>
             <button class="btn btn-primary" type="button" onclick="closeNotice()">Close</button>
+        </div>
+    </div>
+
+    <div id="projectModal" class="overlay-modal" onclick="closeProjectDetails()">
+        <div class="overlay-card" onclick="event.stopPropagation()">
+            <h3 id="projectTitle">Project Details</h3>
+            <p id="projectDetails"></p>
+            <p><strong>Location:</strong> <span id="projectLocation">-</span></p>
+            <button class="btn btn-primary" type="button" onclick="closeProjectDetails()">Close</button>
         </div>
     </div>
 

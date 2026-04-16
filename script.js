@@ -442,6 +442,29 @@ function closeLoginModal() {
     modal.style.display = 'none';
 }
 
+function openProjectDetailsFromCard(card) {
+    if (!card) return;
+
+    const title = card.dataset.projectTitle || 'Project Details';
+    const details = card.dataset.projectDetails || 'No details available.';
+    const location = card.dataset.projectLocation || '-';
+
+    const titleEl = document.getElementById('projectTitle');
+    const detailsEl = document.getElementById('projectDetails');
+    const locationEl = document.getElementById('projectLocation');
+    const modalEl = document.getElementById('projectModal');
+
+    if (titleEl) titleEl.innerText = title;
+    if (detailsEl) detailsEl.innerText = details;
+    if (locationEl) locationEl.innerText = location;
+    if (modalEl) modalEl.style.display = 'flex';
+}
+
+function closeProjectDetails() {
+    const modal = document.getElementById('projectModal');
+    if (modal) modal.style.display = 'none';
+}
+
 // ===== INIT =====
 document.addEventListener('DOMContentLoaded', () => {
     const noticeToggle = document.getElementById('noticeToggle');
@@ -469,6 +492,17 @@ document.addEventListener('DOMContentLoaded', () => {
     if (logoutBtn) {
         logoutBtn.addEventListener('click', logoutUser);
     }
+
+    const detailCards = document.querySelectorAll('.project-detail-card');
+    detailCards.forEach((card) => {
+        card.addEventListener('click', () => openProjectDetailsFromCard(card));
+        card.addEventListener('keydown', (event) => {
+            if (event.key === 'Enter' || event.key === ' ') {
+                event.preventDefault();
+                openProjectDetailsFromCard(card);
+            }
+        });
+    });
 
     const loginInputs = ['page-username', 'page-password', 'modal-username', 'modal-password']
         .map((id) => document.getElementById(id))

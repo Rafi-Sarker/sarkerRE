@@ -448,6 +448,15 @@ nav {
     background: #fffaf0;
 }
 
+.project-detail-card {
+    cursor: pointer;
+}
+
+.project-detail-card:focus-visible {
+    outline: 3px solid var(--gold);
+    outline-offset: 3px;
+}
+
 .overlay-modal {
     display: none;
     align-items: center;
