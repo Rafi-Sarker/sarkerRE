@@ -497,6 +497,12 @@ function closeLoginModal() {
 function openProjectDetailsFromCard(card) {
     if (!card) return;
 
+    const slug = card.dataset.projectSlug;
+    if (slug) {
+        window.location.href = `details.html?project=${encodeURIComponent(slug)}`;
+        return;
+    }
+
     const title = card.dataset.projectTitle || 'Project Details';
     const details = card.dataset.projectDetails || 'No details available.';
     const location = card.dataset.projectLocation || '-';
@@ -512,6 +518,41 @@ function openProjectDetailsFromCard(card) {
     if (modalEl) modalEl.style.display = 'flex';
 }
 
+
+function loadProjectDetailsPage() {
+    const titleEl = document.getElementById('detailTitle');
+    const locationEl = document.getElementById('detailLocation');
+    const descriptionEl = document.getElementById('detailDescription');
+    const highlightsEl = document.getElementById('detailHighlights');
+    const galleryEl = document.getElementById('detailGallery');
+
+    if (!titleEl || !locationEl || !descriptionEl || !highlightsEl || !galleryEl) {
+        return;
+    }
+
+    const params = new URLSearchParams(window.location.search);
+    const slug = params.get('project') || '';
+    const project = PROJECT_DETAILS[slug];
+
+    if (!project) {
+        titleEl.innerText = 'Project Not Found';
+        locationEl.innerText = 'Unknown location';
+        descriptionEl.innerText = 'The requested project could not be found. Please return to the properties page and try again.';
+        highlightsEl.innerHTML = '<li>Navigate back to the properties page.</li>';
+        galleryEl.innerHTML = '';
+        return;
+    }
+
+    titleEl.innerText = project.title;
+    locationEl.innerText = project.location;
+    descriptionEl.innerText = project.description;
+
+    highlightsEl.innerHTML = project.highlights.map((item) => `<li>${item}</li>`).join('');
+    galleryEl.innerHTML = project.gallery
+        .map((src, index) => `<img src="${src}" alt="${project.title} gallery image ${index + 1}" loading="lazy">`)
+        .join('');
+}
+
 function closeProjectDetails() {
     const modal = document.getElementById('projectModal');
     if (modal) modal.style.display = 'none';
@@ -524,6 +565,32 @@ document.addEventListener('DOMContentLoaded', () => {
     const loginSubmit = document.getElementById('loginSubmit');
     const pageLoginSubmit = document.getElementById('pageLoginSubmit');
     const logoutBtn = document.getElementById('logoutBtn');
+
+    document.addEventListener('click', (event) => {
+        const actionTarget = event.target.closest('[data-action]');
+        if (actionTarget) {
+            const action = actionTarget.dataset.action;
+            if (action === 'close-notice') {
+                closeNotice();
+                return;
+            }
+            if (action === 'toggle-notice-panel') {
+                toggleNoticePanel();
+                return;
+            }
+        }
+
+        const noticeTarget = event.target.closest('[data-notice-index]');
+        if (!noticeTarget) return;
+
+        const isNoticeListClick = noticeTarget.closest('#noticeList') || noticeTarget.closest('#noticeCardList');
+        if (!isNoticeListClick) return;
+
+        const index = Number(noticeTarget.dataset.noticeIndex);
+        if (!Number.isNaN(index)) {
+            openNotice(index);
+        }
+    });
 
     if (noticeToggle) {
         noticeToggle.addEventListener('click', toggleNoticePanel);
