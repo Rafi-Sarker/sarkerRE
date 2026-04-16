@@ -497,6 +497,12 @@ function closeLoginModal() {
 function openProjectDetailsFromCard(card) {
     if (!card) return;
 
+    const slug = card.dataset.projectSlug;
+    if (slug) {
+        window.location.href = `details.html?project=${encodeURIComponent(slug)}`;
+        return;
+    }
+
     const title = card.dataset.projectTitle || 'Project Details';
     const details = card.dataset.projectDetails || 'No details available.';
     const location = card.dataset.projectLocation || '-';
