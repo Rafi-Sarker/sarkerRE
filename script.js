@@ -412,7 +412,7 @@ function loadNotices() {
         if (!isRead) unreadCount += 1;
 
         html += `
-      <div class="notice-item ${!isRead ? 'unread' : ''}" data-notice-index="${i}">
+      <div class="notice-item ${!isRead ? 'unread' : ''}" data-notice-index="${i}" tabindex="0" role="button" aria-label="Open notice ${n.title || 'No Title'}">
         <h4>${n.title || 'No Title'} ${String(n.pin).toLowerCase() === 'true' ? '📌' : ''}</h4>
         <small>${n.date || '-'}</small>
       </div>
@@ -432,7 +432,7 @@ function loadNotices() {
             cardList.innerHTML = '<article class="notice-card"><h3>No notices available</h3><p>Please check back later for updates.</p></article>';
         } else {
             cardList.innerHTML = filtered.map((n, i) => `
-                <article class="notice-card ${String(n.pin).toLowerCase() === 'true' ? 'pinned' : ''}" data-notice-index="${i}">
+                <article class="notice-card ${String(n.pin).toLowerCase() === 'true' ? 'pinned' : ''}" data-notice-index="${i}" tabindex="0" role="button" aria-label="Open notice ${n.title || 'No Title'}">
                     <h3>${n.title || 'No Title'} ${String(n.pin).toLowerCase() === 'true' ? '📌' : ''}</h3>
                     <p>${n.message || 'No details available.'}</p>
                     <small>${n.date || '-'}</small>
@@ -597,6 +597,30 @@ document.addEventListener('DOMContentLoaded', () => {
     if (logoutBtn) {
         logoutBtn.addEventListener('click', logoutUser);
     }
+
+
+    document.addEventListener('click', (event) => {
+        const noticeTrigger = event.target.closest('[data-notice-index]');
+        if (!noticeTrigger) return;
+
+        const noticeIndex = Number(noticeTrigger.dataset.noticeIndex);
+        if (Number.isNaN(noticeIndex)) return;
+
+        openNotice(noticeIndex);
+    });
+
+    document.addEventListener('keydown', (event) => {
+        if (event.key !== 'Enter' && event.key !== ' ') return;
+
+        const noticeTrigger = event.target.closest('[data-notice-index]');
+        if (!noticeTrigger) return;
+
+        event.preventDefault();
+        const noticeIndex = Number(noticeTrigger.dataset.noticeIndex);
+        if (Number.isNaN(noticeIndex)) return;
+
+        openNotice(noticeIndex);
+    });
 
     const detailCards = document.querySelectorAll('.project-detail-card');
     detailCards.forEach((card) => {
