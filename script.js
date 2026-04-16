@@ -512,6 +512,41 @@ function openProjectDetailsFromCard(card) {
     if (modalEl) modalEl.style.display = 'flex';
 }
 
+
+function loadProjectDetailsPage() {
+    const titleEl = document.getElementById('detailTitle');
+    const locationEl = document.getElementById('detailLocation');
+    const descriptionEl = document.getElementById('detailDescription');
+    const highlightsEl = document.getElementById('detailHighlights');
+    const galleryEl = document.getElementById('detailGallery');
+
+    if (!titleEl || !locationEl || !descriptionEl || !highlightsEl || !galleryEl) {
+        return;
+    }
+
+    const params = new URLSearchParams(window.location.search);
+    const slug = params.get('project') || '';
+    const project = PROJECT_DETAILS[slug];
+
+    if (!project) {
+        titleEl.innerText = 'Project Not Found';
+        locationEl.innerText = 'Unknown location';
+        descriptionEl.innerText = 'The requested project could not be found. Please return to the properties page and try again.';
+        highlightsEl.innerHTML = '<li>Navigate back to the properties page.</li>';
+        galleryEl.innerHTML = '';
+        return;
+    }
+
+    titleEl.innerText = project.title;
+    locationEl.innerText = project.location;
+    descriptionEl.innerText = project.description;
+
+    highlightsEl.innerHTML = project.highlights.map((item) => `<li>${item}</li>`).join('');
+    galleryEl.innerHTML = project.gallery
+        .map((src, index) => `<img src="${src}" alt="${project.title} gallery image ${index + 1}" loading="lazy">`)
+        .join('');
+}
+
 function closeProjectDetails() {
     const modal = document.getElementById('projectModal');
     if (modal) modal.style.display = 'none';
@@ -524,6 +559,18 @@ document.addEventListener('DOMContentLoaded', () => {
     const loginSubmit = document.getElementById('loginSubmit');
     const pageLoginSubmit = document.getElementById('pageLoginSubmit');
     const logoutBtn = document.getElementById('logoutBtn');
+
+    document.addEventListener('click', (event) => {
+        const target = event.target.closest('[data-action]');
+        if (!target) return;
+
+        const action = target.dataset.action;
+        if (action === 'close-notice') {
+            closeNotice();
+        } else if (action === 'toggle-notice-panel') {
+            toggleNoticePanel();
+        }
+    });
 
     if (noticeToggle) {
         noticeToggle.addEventListener('click', toggleNoticePanel);
