@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Us | Sarker Real Estates Ltd.</title>
-    <meta name="description" content="Talk with Sarker Real Estates consultants and plan your next premium property investment.">
+    <title>Project Details | Sarker Real Estates Ltd.</title>
+    <meta name="description" content="Detailed project information and gallery for Sarker Real Estates developments.">
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
@@ -17,9 +17,9 @@
             </a>
             <ul class="nav-links" id="main-nav">
                 <li><a href="index.html">Home</a></li>
-                <li><a href="projects.html">Properties</a></li>
+                <li><a href="projects.html" class="active">Properties</a></li>
                 <li><a href="index.html#about">About Us</a></li>
-                <li><a href="contact.html" class="active">Contact</a></li>
+                <li><a href="contact.html">Contact</a></li>
                 <li><a href="user.html">Client Portal</a></li>
             </ul>
             <button class="menu-toggle" id="mobile-menu" type="button" aria-label="Toggle navigation" aria-expanded="false" aria-controls="main-nav">
@@ -30,28 +30,29 @@
         </nav>
     </header>
 
-    <section class="container contact-layout">
-        <article class="contact-info reveal">
-            <h2 class="section-title section-left">Let's Talk</h2>
-            <p>Ready to find your next property? Reach out to our consultants and receive tailored project recommendations.</p>
-            <p><strong>Email:</strong> <a href="mailto:info@sarkerestates.com">info@sarkerestates.com</a></p>
-            <p><strong>Phone:</strong> <a href="tel:+8801000000000">+880 1000-000000</a></p>
-            <p><strong>Office:</strong> Bashundhara Riverview, Dhaka</p>
-        </article>
-
-        <form class="contact-form reveal" action="mailto:info@sarkerestates.com" method="post" enctype="text/plain">
-            <label for="full-name">Full Name</label>
-            <input id="full-name" type="text" name="Full Name" placeholder="Full Name" required>
-
-            <label for="email">Email Address</label>
-            <input id="email" type="email" name="Email" placeholder="Email Address" required>
-
-            <label for="message">How can we help?</label>
-            <textarea id="message" name="Message" placeholder="How can we help you?" rows="5" required></textarea>
-
-            <button class="btn btn-primary" type="submit">Send Message</button>
-        </form>
+    <section class="page-banner">
+        <div class="container reveal">
+            <h1 id="detailTitle">Project Details</h1>
+            <p id="detailLocation">Dhaka, Bangladesh</p>
+        </div>
     </section>
+
+    <main class="container details-layout">
+        <section class="detail-card reveal visible">
+            <h2>Overview</h2>
+            <p id="detailDescription">Project details will appear here.</p>
+        </section>
+
+        <section class="detail-card reveal visible">
+            <h2>Key Highlights</h2>
+            <ul id="detailHighlights" class="detail-highlights"></ul>
+        </section>
+
+        <section class="detail-card reveal visible">
+            <h2>Gallery</h2>
+            <div id="detailGallery" class="detail-gallery"></div>
+        </section>
+    </main>
 
     <footer class="site-footer">
         <div class="container footer-grid">

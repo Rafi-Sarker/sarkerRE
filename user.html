@@ -46,7 +46,7 @@
             <button id="pageLoginSubmit" class="btn btn-primary" type="button">Login</button>
         </section>
 
-        <section id="dashboardPage" class="dashboard-page" style="display: none;">
+        <section id="dashboardPage" class="dashboard-page">
             <div class="dashboard-head reveal visible">
                 <h1>Welcome, <span id="user">Investor</span></h1>
                 <button id="logoutBtn" class="btn btn-secondary" type="button">Logout</button>
@@ -89,21 +89,21 @@
     <aside id="noticePanel" class="notice-panel">
         <div class="notice-head">
             <h3>Notice Board</h3>
-            <button type="button" class="plain-btn" onclick="toggleNoticePanel()">Close</button>
+            <button type="button" class="plain-btn" data-action="toggle-notice-panel">Close</button>
         </div>
         <div id="noticeList"></div>
     </aside>
 
-    <div id="noticeModal" class="overlay-modal" onclick="closeNotice()">
-        <div class="overlay-card" onclick="event.stopPropagation()">
+    <div id="noticeModal" class="overlay-modal">
+        <div class="overlay-card">
             <h3 id="noticeTitle">Notice</h3>
             <p id="noticeMessage"></p>
-            <button class="btn btn-primary" type="button" onclick="closeNotice()">Close</button>
+            <button class="btn btn-primary" type="button" data-action="close-notice">Close</button>
         </div>
     </div>
 
-        <div id="loginModal" class="overlay-modal" onclick="closeLoginModal()">
-        <div class="overlay-card" onclick="event.stopPropagation()">
+        <div id="loginModal" class="overlay-modal">
+        <div class="overlay-card">
             <h3>Investor Login</h3>
             <label for="modal-username">Username</label>
             <input id="modal-username" type="text" placeholder="Username">
