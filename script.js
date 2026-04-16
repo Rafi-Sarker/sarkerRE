@@ -66,6 +66,53 @@ const SHEETS = {
     Notices: `${BASE}?gid=1179149768&single=true&output=csv`
 };
 
+const PROJECT_DETAILS = {
+    'skyline-manor': {
+        title: 'Skyline Manor',
+        location: 'Gulshan, Dhaka',
+        description: 'A premium residential duplex project with panoramic skyline views, curated social spaces, and family-focused amenities.',
+        highlights: ['Panoramic skyline-facing units', 'Private lounge and rooftop deck', 'Family recreation and wellness facilities'],
+        gallery: [
+            'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1200&q=80',
+            'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1200&q=80',
+            'https://images.unsplash.com/photo-1600210492493-0946911123ea?auto=format&fit=crop&w=1200&q=80'
+        ]
+    },
+    'sarker-business-hub': {
+        title: 'Sarker Business Hub',
+        location: 'Banani, Dhaka',
+        description: 'A modern commercial destination designed for scaling businesses with efficient floorplates, smart infrastructure, and collaborative work zones.',
+        highlights: ['Flexible office floor plans', 'Smart access and surveillance systems', 'Dedicated business networking zones'],
+        gallery: [
+            'https://images.unsplash.com/photo-1600607687940-4e2a09695d51?auto=format&fit=crop&w=1200&q=80',
+            'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1200&q=80',
+            'https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1200&q=80'
+        ]
+    },
+    'gold-coast-villa': {
+        title: 'The Gold Coast Villa',
+        location: "Cox's Bazar, Bangladesh",
+        description: 'A high-end coastal villa concept with private access, luxury finishes, and a discreet security-first lifestyle offering.',
+        highlights: ['Private coastal access', 'Designer interior finishing', '24/7 private security operations'],
+        gallery: [
+            'https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&w=1200&q=80',
+            'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1200&q=80',
+            'https://images.unsplash.com/photo-1600585154205-1f76f5f1bdbc?auto=format&fit=crop&w=1200&q=80'
+        ]
+    },
+    'shamlapur-green-zone': {
+        title: 'Shamlapur Green Zone',
+        location: 'Kolatia, Shamlapur, Savar',
+        description: 'Strategically located land at Kolatia, Shamlapur, Savar near the Buriganga River and Dhanmondi-side approach, positioned for strong future value as greater Dhaka expands toward this green belt corridor.',
+        highlights: ['Green belt growth corridor positioning', 'Near Buriganga River access', 'Strong long-term land appreciation potential'],
+        gallery: [
+            'shamlapur.jpg',
+            'https://images.unsplash.com/photo-1501183638710-841dd1904471?auto=format&fit=crop&w=1200&q=80',
+            'https://images.unsplash.com/photo-1505691723518-36a5ac3be353?auto=format&fit=crop&w=1200&q=80'
+        ]
+    }
+};
+
 // ===== GLOBAL DATA =====
 let investors = [];
 let investments = [];
@@ -266,7 +313,7 @@ function loadDashboard() {
           <p><b>Total Value:</b> ৳${inv.total}</p>
           <p><b>Invested:</b> ৳${investedSum}</p>
           <div class="progress-bar">
-            <div class="progress" style="width:${progress}%">${progress}%</div>
+            <div class="progress" data-progress="${progress}">${progress}%</div>
           </div>
         </div>
       </div>
@@ -294,6 +341,11 @@ function loadDashboard() {
     if (investedEl) investedEl.innerText = `৳${totalInvested}`;
     if (totalProjectsEl) totalProjectsEl.innerText = Object.keys(grouped).length;
     if (projectListEl) projectListEl.innerHTML = projectHTML || '<p>No active projects found.</p>';
+    if (projectListEl) {
+        projectListEl.querySelectorAll('.progress[data-progress]').forEach((bar) => {
+            bar.style.width = `${bar.dataset.progress}%`;
+        });
+    }
     if (historyTableEl) {
         historyTableEl.innerHTML = historyHTML || '<tr><td colspan="3">No investment history found.</td></tr>';
     }
@@ -318,7 +370,7 @@ function renderReviewsInto(containerId) {
         const stars = '⭐'.repeat(rating) + '☆'.repeat(5 - rating);
 
         html += `
-      <div class="review-card" style="animation-delay:${index * 0.05}s">
+      <div class="review-card">
         <strong>${u.name || u.username}</strong>
         <div class="review-stars">${stars}</div>
         <div>${u.comment}</div>
@@ -360,7 +412,7 @@ function loadNotices() {
         if (!isRead) unreadCount += 1;
 
         html += `
-      <div class="notice-item ${!isRead ? 'unread' : ''}" onclick="openNotice(${i})">
+      <div class="notice-item ${!isRead ? 'unread' : ''}" data-notice-index="${i}">
         <h4>${n.title || 'No Title'} ${String(n.pin).toLowerCase() === 'true' ? '📌' : ''}</h4>
         <small>${n.date || '-'}</small>
       </div>
@@ -368,7 +420,7 @@ function loadNotices() {
     });
 
     if (filtered.length === 0) {
-        html = "<p style='font-size:13px;color:#777;'>No updates</p>";
+        html = "<p class='notice-empty'>No updates</p>";
     }
 
     const list = document.getElementById('noticeList');
@@ -380,7 +432,7 @@ function loadNotices() {
             cardList.innerHTML = '<article class="notice-card"><h3>No notices available</h3><p>Please check back later for updates.</p></article>';
         } else {
             cardList.innerHTML = filtered.map((n, i) => `
-                <article class="notice-card ${String(n.pin).toLowerCase() === 'true' ? 'pinned' : ''}" onclick="openNotice(${i})">
+                <article class="notice-card ${String(n.pin).toLowerCase() === 'true' ? 'pinned' : ''}" data-notice-index="${i}">
                     <h3>${n.title || 'No Title'} ${String(n.pin).toLowerCase() === 'true' ? '📌' : ''}</h3>
                     <p>${n.message || 'No details available.'}</p>
                     <small>${n.date || '-'}</small>
@@ -517,5 +569,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    loadProjectDetailsPage();
     initSheets();
 });
